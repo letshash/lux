@@ -537,8 +537,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 pindexNew->nStakeTime = diskindex.nStakeTime;
                 pindexNew->hashProofOfStake = diskindex.hashProofOfStake;
 
-                bool isPoW = (diskindex.nNonce != 0) && pindexNew->nHeight <= Params().LAST_POW_BLOCK();
-                if (isPoW) {
+                if (pindexNew->IsProofOfWork()) {
 //                    auto const &hash(pindexNew->phashBlock);
                     const uint256 *hash = pindexNew->phashBlock;                    
                 //    auto const &hash(pindexNew->GetBlockHeader().GetHash(pindexNew->nHeight,1));
